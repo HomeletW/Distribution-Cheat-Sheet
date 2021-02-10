@@ -1,0 +1,329 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+% \usepackage{textcomp}
+% \usepackage{lmodern}
+% \usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{color,soul}
+\usepackage[rightcaption]{sidecap}
+\usepackage{amsthm}
+\usepackage{cancel}
+\usepackage[table]{xcolor} 
+\usepackage{tcolorbox}
+\usepackage[papersize={73.5cm,50cm}, margin=0.5cm]{geometry}
+\usepackage{sectsty}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tabu}
+\usepackage{collectbox}
+\usepackage{minted}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{tikz}
+\usepackage{hhline}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{multicol}
+\usetikzlibrary{arrows,automata}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+\pagestyle{fancy}
+\fancyhf{}
+% \rfoot{Cheet Sheet}
+% \lfoot{Page \thepage}
+% \setlength{\headheight}{1pt}
+\sectionfont{\normalfont\large\underline}
+\subsectionfont{\normalfont\small\underline}
+\sidecaptionvpos{figure}{t}
+\graphicspath{ {.} }
+% \setlist{wide, labelwidth=!, labelindent=0pt}
+\renewcommand\qedsymbol{$\blacksquare$}
+\renewcommand{\headrulewidth}{0pt}
+\DeclarePairedDelimiter\seq{\{}{\}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\AtBeginEnvironment{align}{\setcounter{equation}{0}}
+\newcommand\myeq{\stackrel{\mathclap{\normalfont\small\mbox{L'H}}}}
+\newcommand{\cmark}{\ding{52}}%
+\newcommand{\xmark}{\ding{56}}%
+\newcommand{\implie}{\hspace{0.3cm}\Rightarrow\hspace{0.3cm}}
+\newcommand{\bimplie}{\Longleftrightarrow}
+\newcommand{\bigo}{\mathcal{O}}
+\newcommand{\bigomega}{\Omega}
+\newcommand{\bigtheta}{\Theta}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\mybox}{%
+    \collectbox{%
+        \setlength{\fboxsep}{1pt}%
+        \fbox{\BOXCONTENT}%
+    }%
+}
+\newcommand{\code}{\mint}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\wtp}{\underline{WTP:} }
+\newcommand{\indep}{\perp \!\!\! \perp}
+\renewcommand{\tilde}{$\mathtt{\sim}$}
+\renewcommand\thefootnote{\textcolor{red}{\arabic{footnote}}}
+\begin{document}
+\begin{center}
+    {\Huge Named Distribution}
+\end{center}
+% \begin{table}[H]
+\newcolumntype{S}{ >{\centering\arraybackslash} m{2.5cm} }
+\newcolumntype{C}{ >{\centering\arraybackslash} m{3cm} }
+\newcolumntype{L}{ >{\centering\arraybackslash} m{5cm} }
+\newcolumntype{T}{ >{\centering\arraybackslash} m{7cm} }
+\newcolumntype{E}{ >{\centering\arraybackslash} m{10cm} }
+\newcolumntype{H}{ >{\centering\arraybackslash} m{6cm} }
+% name, notation, range, usecase, PMF/PDF, CDF, exp, var, std, mgf, note
+{
+    \rowcolors{2}{gray!10}{white}
+    \begin{tabular}{ | S | C | C | T | E | L | L | L | L | L | L | L | H |}
+        \rowcolor{gray!30}
+        \hline
+        Named Distribution & Notation
+                           & \multicolumn{1}{c|}{Range}
+                           & Use Case
+                           & PMF/PDF
+                           & CDF
+                           & Expected Value $E(X)$
+                           & Variance $V(X)$
+                           & Moment Generating Function $M(t)$
+                           & Method of Momenet
+                           & Maximum Likelihood
+                           & Sufficient Statistic
+                           & Note
+        \\ \hline
+        Bernoulli          & $$Ber(p)$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}x=0, 1\end{array}$}
+                           & Single trials.
+                           & $$p^x(1-p)^{1-x}$$
+                           & $$$$
+                           & $$p$$
+                           & $$p(1-p)$$
+                           & $$(1-p)+pe^t$$
+                           & $$\hat p=\bar X$$
+                           & $$\hat p=\bar X$$
+                           & $$$$
+                           &
+        \\ \hline
+        Binomial           & $$Bin(n, p)$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}x=0, 1, \dots\\n\in\N\end{array}$}
+                           & $x$ is number of successes out of $n$ trials.
+                           & $$\binom nxp^x(1-p)^{n-x}$$
+                           & $$$$
+                           & $$np$$
+                           & $$np(1-p)$$
+                           & $$(1-p+pe^t)^n$$
+                           & $$$$
+                           & $$\hat p=\frac{\bar X}{n}$$
+                           & $$$$
+                           &
+        \\ \hline
+        Geometric          & $$Geo(p)$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}x=1, 2, \dots\end{array}$}
+                           & $x$ is number of trials until first success.
+                           & $$(1-p)^{x-1}p$$
+                           & $$1-(1-p)^x$$
+                           & $$\frac{1}{p}$$
+                           & $$\frac{1-p}{p^2}$$
+                           & $$\frac{e^tp}{1-(1-p)e^t}$$
+                           & $$\hat p=\frac{1}{\bar X}$$
+                           & $$\hat p=\frac{1}{\bar X}$$
+                           & $$$$
+                           & Memoryless\footnotemark[1]
+        \\ \hline
+        Negative Binomial  & $$NegBin(r, p)$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}x=r, r+1, \dots\\r\in\N\end{array}$}
+                           & $x$ is number of trials until $r$ successes.
+                           & $$\binom{x-1}{r-1}p^{r}(1-p)^{x-r}$$
+                           & $$$$
+                           & $$\frac{r}{p}$$
+                           & $$\frac{r(1-p)}{p^2}$$
+                           & $$\left[\frac{e^tp}{1-(1-p)e^t}\right]^2$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           &
+        \\ \hline
+        Hyper Geometric    & $$HypGeo(m, r, n)$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}x=1, \dots, n\\m, r, n\in\N\end{array}$}
+                           & Pick $m$ out of $n$ balls with $r$ blacks. $x$ is the number of black ball picked.
+                           & $$\frac{\binom{r}{x}\binom{n-r}{m-x}}{\binom{n}{m}}$$
+                           & $$$$
+                           & $$m\left(\frac{r}{n}\right)$$
+                           & $$m\left(\frac{r}{n}\right)\left(1-\frac{r}{n}\right)\left(\frac{n-m}{n-1}\right)$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $n$ is population, $m$ is number of trials, $r$ is number of black ball.
+        \\ \hline
+        Poisson            & $$Pois(\lambda)$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}x=0, 1, \dots\\\lambda>0\end{array}$}
+                           & Something happens on average $\lambda$ times for a period. $x$ is the number of observe happens.
+                           & $$\frac{\lambda^xe^{-\lambda}}{x!}$$
+                           & $$$$
+                           & $$\lambda$$
+                           & $$\lambda$$
+                           & $$e^{\lambda(e^t-1)}$$
+                           & $$$$
+                           & $$\hat \lambda=\bar X$$
+                           & $$$$
+                           & Poisson can approximate Binomial when $n\to\infty$ and $p\to 0$, that is: $X\sim Bin(n, p)$ then $X\sim Pois(np)$
+        \\ \hline \hline
+        Uniform            & $$Uni(a, b)$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}x\in[a, b]\\a, b\in\R\\a\leq b\end{array}$}
+                           & $$$$
+                           & $$\frac{1}{\beta-\alpha}$$
+                           & $$\frac{x-a}{b-a}$$
+                           & $$\frac{b+a}{2}$$
+                           & $$\frac{(b-a)^2}{12}$$
+                           & $$\frac{e^{tb}-e{ta}}{t(b-a)}$$
+                           & $$$$
+                           & $$\hat\beta=\max\{X_1, \dots, X_n\}$$
+                           & $$\beta:\max\{X_1, \dots, X_n\}$$
+                           &
+        \\ \hline
+        Exponential        & $$Exp(\lambda)$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}x\geq 0\\\lambda>0\end{array}$}
+                           & Something happens on average $\lambda$ times for a period. $x$ is the time to wait for one occurance.
+                           & $$\lambda e^{-\lambda x}$$
+                           & $$1-e^{-\lambda x}$$
+                           & $$\frac{1}{\lambda}$$
+                           & $$\frac{1}{\lambda^2}$$
+                           & $$\frac{\lambda}{\lambda-t}$$
+                           & $$\hat \lambda=\frac{1}{\bar X}$$
+                           & $$\hat \lambda=\frac{1}{\bar X}$$
+                           & $$$$
+                           & Memoryless\footnotemark[1], Often model time.
+        \\ \hline
+        Gamma              & $$Ga(\alpha, \lambda)$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}x>0\\\alpha>0\\\lambda>0\end{array}$}
+                           & Something happens on average $\lambda$ times for a period. $x$ is the time to wait for $\alpha$ occurances.
+                           & $$\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}$$
+                           & $$$$
+                           & $$\frac{\alpha}{\lambda}$$
+                           & $$\frac{\alpha}{\lambda^2}$$
+                           & $$\left[\frac{\lambda}{\lambda-t}\right]^\alpha$$
+                           & $$$$
+                           & $$$$
+                           & $$\alpha:\sum^n\ln X_i$$
+                           & $Ga(1, \lambda)=Exp(\lambda)$
+        \\ \hline
+        Normal (Gaussian)  & $$N(\mu, \sigma^2)$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}x\in\R\\\mu\in\R\\\sigma\in\R\end{array}$}
+                           & $$$$
+                           & $$\frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/2\sigma^2}$$
+                           & $$$$
+                           & $$\mu$$
+                           & $$\sigma^2$$
+                           & $$e^{\mu t}e^{(\sigma^2t^2)/2}$$
+                           & $$$$
+                           & $$\begin{array}{l}\hat \mu=\bar X\\\hat{\sigma^2}=\frac{1}{n}\sum_{i}(X_i-\bar X)^2\end{array}$$
+                           & $$$$
+                           & Symmetric.
+        \\ \hline
+        Standard Normal    & $$Z, N(0, 1)$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}x\in\R\end{array}$}
+                           & $$$$
+                           & $$\frac{1}{\sqrt{2\pi}}e^{-x^2/2}$$
+                           & $$\Phi(x)$$
+                           & $$0$$
+                           & $$1$$
+                           & $$e^{t^2/2}$$
+                           & $$-$$
+                           & $$-$$
+                           & $$$$
+                           & Special Case of Normal.
+        \\ \hline
+        Beta               & $$Beta(\alpha, \beta)$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}x\in[0, 1]\\\alpha>0\\\beta>0\end{array}$}
+                           & Modelling proportion.
+                           & $$\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha -1}(1-x)^{\beta-1}$$
+                           & $$$$
+                           & $$\frac{\alpha}{\alpha+\beta}$$
+                           & $$\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $Beta(1, 1)=Uni(0, 1)$
+        \\ \hline
+        Chi-Square         & $$\chi_n^2$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}x\geq 0\\n\in\N^+\end{array}$}
+                           & A Transformation of Standard Normal. Only takes positive value, model sample variance. Hypothesis tests.
+                           & $$\frac{x^{n/2-1}}{2^{n/2}\Gamma(n/2)}e^{-x/2}$$
+                           & $$$$
+                           & $$n$$
+                           & $$2n$$
+                           & $$(1-2t)^{-n/2}$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $\chi_n^2\sim Ga\left(n/2, 0.5\right)$, $U+V\sim \chi_{n+m}^2$
+        \\ \hline
+        T                  & $$T_n$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}t\geq 0\\n\in\N^+\end{array}$}
+                           & Model Standardized quantities. Bell-shaped, looks like Normal but with heavier tails.
+                           & $$\frac{\Gamma((n+1)/2)}{\sqrt{n\pi}\Gamma(n/2)}\left(1+\frac{t^2}{n}\right)^{-(n+1)/2}$$
+                           & $$$$
+                           & $$0$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $$T=\frac{Z}{\sqrt{U/n}}, Z\sim N(0, 1), U\sim \chi_n^2$$
+        \\ \hline
+        F                  & $$F_{m, n}$$
+                           & \multicolumn{1}{l|}{$\begin{array}{l}w\geq 0\\m\in\N^+\\n\in\N^+\end{array}$}
+                           & Model ratio of variance.
+                           & $$\frac{\Gamma((m+n)/2)}{\Gamma(m/2)\Gamma(n/2)}\left(\frac{m}{n}\right)^{m/2}\left(1+\frac{m}{n}w\right)^{-(m+n)/2}w^{(m/2)-1}$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $W=\frac{U/m}{V/n}, U\sim\chi_m^2, V\sim\chi_n^2$, $X\sim T_n\implies X^2\implies F_{1, n}$
+        \\ \hline
+        Sample Mean        & $$\bar X$$
+                           &
+                           & $$\bar X\sim N\left(\mu, \frac{\sigma^2}{n}\right)$$
+                           & $$\frac{1}{n}\sum_{i=1}^nX_i$$
+                           & $$$$
+                           & $$\mu$$
+                           & $$\frac{\sigma^2}{n}$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $$\frac{\bar X-\mu}{S/\sqrt{n}}\sim T_{n-1}$$
+        \\ \hline
+        Sample Variance    & $$S^2$$
+                           &
+                           &
+                           & $$\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2$$
+                           & $$$$
+                           & $$\sigma^2$$
+                           & $$\frac{2\sigma^4}{n-1}$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $$$$
+                           & $$\frac{(n-1)S^2}{\sigma^2}\sim \chi_{n-1}^2$$
+        \\ \hline
+    \end{tabular}
+}
+\footnotetext[1]{Memoryless : $P(X>n+k|X>n)=P(k)$}
+% \end{table}
+\end{document}

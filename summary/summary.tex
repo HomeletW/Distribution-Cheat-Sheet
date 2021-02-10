@@ -1,0 +1,398 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+% \usepackage{textcomp}
+% \usepackage{lmodern}
+% \usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{color,soul}
+\usepackage[rightcaption]{sidecap}
+\usepackage{amsthm}
+\usepackage{cancel}
+\usepackage[table]{xcolor} 
+\usepackage{tcolorbox}
+\usepackage[papersize={64cm, 60cm}, margin=0.5cm]{geometry}
+\usepackage{sectsty}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tabu}
+\usepackage{collectbox}
+\usepackage{minted}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{tikz}
+\usepackage{hhline}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{multicol}
+\usetikzlibrary{arrows,automata}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+\pagestyle{fancy}
+\fancyhf{}
+% \rfoot{Cheet Sheet}
+% \lfoot{Page \thepage}
+% \setlength{\headheight}{1pt}
+\sectionfont{\normalfont\large\underline}
+\subsectionfont{\normalfont\small\underline}
+\sidecaptionvpos{figure}{t}
+\graphicspath{ {.} }
+% \setlist{wide, labelwidth=!, labelindent=0pt}
+\renewcommand\qedsymbol{$\blacksquare$}
+\renewcommand{\headrulewidth}{0pt}
+\DeclarePairedDelimiter\seq{\{}{\}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\AtBeginEnvironment{align}{\setcounter{equation}{0}}
+\newcommand\myeq{\stackrel{\mathclap{\normalfont\small\mbox{L'H}}}}
+\newcommand{\cmark}{\ding{52}}%
+\newcommand{\xmark}{\ding{56}}%
+\newcommand{\implie}{\hspace{0.3cm}\Rightarrow\hspace{0.3cm}}
+\newcommand{\bimplie}{\Longleftrightarrow}
+\newcommand{\bigo}{\mathcal{O}}
+\newcommand{\bigomega}{\Omega}
+\newcommand{\bigtheta}{\Theta}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\mybox}{%
+    \collectbox{%
+        \setlength{\fboxsep}{1pt}%
+        \fbox{\BOXCONTENT}%
+    }%
+}
+\newcommand{\code}{\mint}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\wtp}{\underline{WTP:} }
+\newcommand{\indep}{\perp \!\!\! \perp}
+\renewcommand{\tilde}{$\mathtt{\sim}$}
+\renewcommand\thefootnote{\textcolor{red}{\arabic{footnote}}}
+\begin{document}
+% \begin{center}
+%     {\Huge STA257 Cheat Sheet}
+% \end{center}
+% \begin{table}[H]
+\begin{multicols*}{4}
+    \section{Formulas}
+    \begin{tcolorbox}[title=Formulas]
+        \begin{itemize}[leftmargin=*]
+            \item Permutation:
+                  $$\frac{n!}{(n-r)!}$$
+            \item Combinations:
+                  $$\binom{n}{r}=\frac{n!}{r!(n-r)!}$$
+            \item Geometric Series:
+                  $$\sum_{k=0}^\infty ar^{k}=\frac{a}{1-r}$$
+            \item Infinity Series:
+                  $$\sum_{k=0}^\infty\frac{z^k}{k!}=e^z$$
+            \item Exponential Result:
+                  $$\lim_{n\to\infty}\left(1+\frac{x}{n}\right)^n=e^x$$
+        \end{itemize}
+    \end{tcolorbox}
+    \section{Basic Properties}
+    \begin{itemize}[leftmargin=*]
+        \item PMF (Probability Mass Function) for Discrete RV:
+              \begin{itemize}[leftmargin=*]
+                  \item $p(k)\geq 0$ for all $k$
+                  \item $\sum_i p(k_i)=1$
+              \end{itemize}
+        \item PDF (Probability Density Function) for Continuous RV:
+              \begin{itemize}[leftmargin=*]
+                  \item $f(x)\geq 0$ for all $x$
+                  \item $\int_\infty^\infty f(x)\,dx =1$
+              \end{itemize}
+        \item CDF (Cumulative Distribution Function):
+              \begin{itemize}[leftmargin=*]
+                  \item Non-decreasing function.
+                  \item $\displaystyle\lim_{x\to-\infty}F(x)=0$ and $\displaystyle\lim_{x\to\infty}F(x)=1$
+              \end{itemize}
+    \end{itemize}
+    \begin{tcolorbox}[title=Joint Distribution]
+        {
+            \setlength{\columnseprule}{1pt}
+            \def\columnseprulecolor{\color{black}}
+            \begin{multicols*}{2}
+                [
+                    Joint CDF:
+                    $$F(x, y)=P(X\leq x, Y\leq y)$$
+                ]
+                Joint PMF:
+                $$p(x, y)=P(X=x, Y=y)$$
+                Marginal PMF:
+                $$p_X(x)=\sum_yp(x, y)$$
+                $$p_Y(y)=\sum_xp(x, y)$$
+                \begin{itemize}[leftmargin=*]
+                    \item $p(x, y)\geq 0$ for all $x, y$
+                    \item $\sum_x\sum_yp(x, y)=1$
+                \end{itemize}
+                \vfill
+                Joint PDF:
+                $$f(x, y)=P(X=x, Y=y)$$
+                Marginal PDF:
+                $$f_X(x)=\int_{-\infty}^\infty f(x, y)\,dy$$
+                $$f_Y(y)=\int_{-\infty}^\infty f(x, y)\,dx$$
+                \begin{itemize}[leftmargin=*]
+                    \item $f(x, y)\geq 0$ for all $x, y$
+                    \item $\int_x\int_yp(x, y)\partial y\partial x=1$
+                \end{itemize}
+            \end{multicols*}
+        }
+    \end{tcolorbox}
+    \section{Conditional}
+    \begin{tcolorbox}[title=Conditional Probability for Event]
+        \begin{itemize}[leftmargin=*]
+            \item Definition:
+                  $$P(A|B)=\frac{P(A\cap B)}{P(B)}$$
+            \item Mutiplicative Law:
+                  $$P(A\cap B)=P(B\cap A)=P(A|B)P(B)$$
+            \item Law of Total Probability, Union of all $B_i$ is the $\Omega$
+                  $$P(A)=\sum_{i=1}^nP(A|B_i)P(B_i)$$
+        \end{itemize}
+    \end{tcolorbox}
+    \begin{tcolorbox}[title=Conditional Probability for Multivariate]
+        \begin{itemize}[leftmargin=*]
+            \item Definition:
+                  $$p(X=x|Y=y)=\frac{p_{X, Y}(x, y)}{p_Y(y)}\hspace{1cm}f(X=x|Y=y)=\frac{f_{X, Y}(x, y)}{f_Y(y)}$$
+            \item If $X$ and $Y$ are independent, then their margin PMF/PDF can factor into the product of their Marginal, and canceled by the denominator, thus we got:
+                  $$p(X=x|Y=y)=p(X=x)\hspace{1cm}f(X=x|Y=y)=f(X=x)$$
+            \item Mutiplication Law:
+                  $$p_{XY}(x, y)=p_{X|Y}(x|y)p_Y(y)\hspace{1cm}f_{XY}(x, y)=f_{X|Y}(x|y)f_Y(y)$$
+            \item Law of Total Probability:
+                  $$p_X(x)=\sum_yp(x, y)=\sum_yp_{X|Y}(x|y)p_Y(y)$$
+                  $$f_X(x)=\int_{-\infty}^\infty f(x, y)=\int_{-\infty}^\infty f_{X|Y}(x|y)f_Y(y)$$
+        \end{itemize}
+    \end{tcolorbox}
+    \begin{tcolorbox}[title=Bayes's Rule]
+        $$P(B|A)=\frac{P(A|B)P(B)}{P(A)}$$
+    \end{tcolorbox}
+    \section{Independence}
+    \begin{tcolorbox}[title=Independence]
+        \begin{itemize}[leftmargin=*]
+            \item RV $X$ and $Y$ are independent iff:
+                  $$\begin{array}{l}f(x, y)=f_X(x)f_Y(y)\\p(x, y)=p_X(x)p_Y(y)\end{array}\hspace{0.5cm}or\hspace{0.5cm}M_{X, Y}(x, y)=M_X(x)M_Y(y)$$
+            \item Event $A$ and $B$ are independent iff:
+                  $$P(A\cup B)=P(A)P(B)$$
+        \end{itemize}
+    \end{tcolorbox}
+    \section{Transformation}
+    \begin{tcolorbox}[title=Normal Transformation (Normalize)]
+        $$X\sim N(\mu, \sigma^2)\implies\frac{X-\mu}{\sigma}\sim N(0, 1)$$
+    \end{tcolorbox}
+    \begin{tcolorbox}[title=Direct Transformation Method]
+        Given $f_X(x)$, find $F_X(x)$, then construct $F_Y(y)$ in terms of $F_X(y)$,
+        next we find the derivative of $F_Y(y)$ to find $f_Y(y)$.
+    \end{tcolorbox}
+    \begin{tcolorbox}[title=Monotone Transformation Method]
+        If $Y=g(X)$, where $g$ is differentiable and strictly monotonic on some interval $I$, then
+        the PMF/PDF of $Y$ is given as:
+        $$f_Y(y)=f_X(g^{-1}(y))\left|\frac{d}{dy}g^{-1}(y)\right|$$
+    \end{tcolorbox}
+    \begin{tcolorbox}[title=Probability Integral Transformation]
+        If $Z=F_X(X)$ then $Z\sim Uni(0, 1)$.
+    \end{tcolorbox}
+    \begin{tcolorbox}[title=Inverse Integral Transformation]
+        If $X=F^{-1}(U)$ where $U\sim Uni(0, 1)$ then $X$ has PDF $F(x)$.
+    \end{tcolorbox}
+    \begin{tcolorbox}[title=Convolution Method (Sum of two RV)]
+        Given $Z=X+Y$, then we have:
+        $$p_Z(z)=\sum_{x}p(x, z-x)\hspace{1cm}f_Z(z)=\int_{-\infty}^\infty f(x, z-x)\,dx$$
+        If $X$ and $Y$ are independent, we got:
+        $$p_Z(z)=\sum_{x}p_X(x)p_Y(z-x)\hspace{1cm}f_Z(z)=\int_{-\infty}^\infty f_X(x)f_Y(z-x)\,dx$$
+    \end{tcolorbox}
+    \begin{tcolorbox}[title=Bivariate Transformation Method]
+        Suppose $X$ and $Y$ continuous RV and independent, we have two RV, defined as transformation of $X$ and $Y$, we first use $U,V$ represent $X,Y$:
+        $$U=g_1(X, Y)\hspace{0.3cm}V=g_2(X, Y)\hspace{0.5cm}\text{and}\hspace{0.5cm}X=h_1(U, V)\hspace{0.3cm}Y=h_2(U, V)$$
+        Then the joint PDF of $U$ and $V$ is given as:
+        $$f_{U, V}(u, v)=f_{X, Y}(h_1(u, v), h_2(u, v))\left|\det(J(u, v))\right|$$
+        Where $J(u, v)$ is the Jacobian Matrix, defined as:
+        $$J(u, v)=\left[\begin{matrix}
+                    \frac{\partial h_1}{\partial u} & \frac{\partial h_1}{\partial v} \\
+                    \frac{\partial h_2}{\partial u} & \frac{\partial h_2}{\partial v}
+                \end{matrix}\right]$$
+        And the determinate is calculated as:
+        $$\frac{\partial h_1}{\partial u}\times\frac{\partial h_2}{\partial v}-\frac{\partial h_1}{\partial v}\times\frac{\partial h_2}{\partial u}$$
+    \end{tcolorbox}
+    \section{Expected Value}
+    $$E(X)=\sum_xxp(x)\hspace{1cm}E(X)=\int_{-\infty}^\infty xf(x)\,dx$$
+    \begin{tcolorbox}[title=Properties of Expected Value]
+        \begin{itemize}[leftmargin=*]
+            \item Expectation of a constant:
+                  $$E(E(X))= E(X)$$
+            \item Expectation of Linear Combinations of RV:
+                  $$E\left(a+\sum_{i=1}^nb_iX_i\right)=a+\sum_{i=1}^nb_iE(X_i)$$
+                  Especially:
+                  $$E(aX+b)=aE(X)+b$$
+                  When $a=0$, $b=1$ we got:
+                  $$E\left(\sum_{i=1}^nX_i\right)=\sum_{i=1}^nE(X_i)$$
+            \item Notice:
+                  $$E(g(X))\neq g(E(X))$$
+            \item Expectation of product of RV, If $X$ and $Y$ are independent:
+                  $$E(XY)=E(X)E(Y)$$
+            \item Expected Value of a function of RV, suppose $Y=g(X)$:
+                  $$E(Y)=\sum_xg(x)p(x)\hspace{1cm}E(Y)=\int_{-\infty}^\infty g(x)f(x)\,dx$$
+                  Especially:
+                  $$E(X^2)=\sum_xx^2p(x)\hspace{1cm}E(x^2)=\int_{-\infty}^\infty x^2f(x)\,dx$$
+        \end{itemize}
+    \end{tcolorbox}
+    \begin{tcolorbox}[title=Conditional Expectation]
+        \begin{itemize}[leftmargin=*]
+            \item Expectation of $Y$ given $X=x$ (fixed), and $h(Y)$ is a function of $Y$:
+                  $$E(h(Y)|X=x)=\sum_{y_i}h(y_i)p(Y=y_i|X=x)$$
+                  $$E(h(Y)|X=x)=\int_{-\infty}^\infty h(y_i)p(Y=y_i|X=x)$$
+            \item Law of total Expectation:
+                  $$E(Y)=E_X(E(Y|X))$$
+                  The key here is $E(Y|X)$ is a function of $X$.
+        \end{itemize}
+    \end{tcolorbox}
+    \section{Variance}
+    $$Var(X)=E([X-\mu]^2)$$
+    \begin{tcolorbox}[title=Standard Deviation]
+        $$Std(X)=\sqrt{Var(X)}$$
+    \end{tcolorbox}
+    \begin{tcolorbox}[title=Properties of Variance]
+        \begin{itemize}[leftmargin=*]
+            \item Alternative Variance Form:
+                  $$Var(X)=E(X^2)-[E(X)]^2$$
+            \item Variance of sum of RV:
+                  $$Var(X+Y)=Var(X)+Var(Y)+2Cov(X, Y)$$
+                  $$Var(X-Y)=Var(X)+Var(Y)-2Cov(X, Y)$$
+                  If $X$ and $Y$ are independent, the covariance term is $0$, thus:
+                  $$Var(X+Y)=Var(X-Y)=Var(X)+Var(Y)$$
+                  In General:
+                  $$Var\left(a+\sum_{i=1}^nb_iX_i\right)=\sum_{i=1}^n\sum_{j=1}^nb_ib_jCov(X_i, X_j)$$
+                  Especially:
+                  $$Var(aX+b)=a^2Var(X)$$
+            \item If all $X_i$ are mutually independent, then:
+                  $$Var\left(\sum_{i=1}^nX_i\right)=\sum_{i=1}^nVar(X_i)$$
+            \item Variance of product of RV:
+                  $$Var(XY)=E(X^2Y^2)-[E(XY)]^2$$
+        \end{itemize}
+    \end{tcolorbox}
+    \begin{tcolorbox}[title=Law of total Variance]
+        $$Var(Y)=Var(E(Y|X))+E(Var(Y|X))$$
+    \end{tcolorbox}
+    \begin{tcolorbox}[title=Covariance]
+        \begin{itemize}[leftmargin=*]
+            \item The Covariance of $X$ and $Y$ is defined as:
+                  $$Cov(X, Y)=E((X-E(X))*(Y-E(Y)))$$
+                  Notice that covariance can be positive or negative, contrast to variance which can only take positive value.
+            \item Alternative Covariance Form:
+                  $$Cov(X, Y)=E(XY)-E(X)E(Y)$$
+            \item Property 1:
+                  $$Cov(a+X, Y)=Cov(X, Y)$$
+            \item Property 2:
+                  $$Cov(aX, bY)=abCov(X, Y)$$
+            \item Property 3:
+                  $$Cov(X, Y+Z)=Cov(X, Y)+Cov(X, Z)$$
+            \item Property 4:
+                  $$Cov(aX+bW, cY+dZ)=\begin{array}{l}
+                          ac*Cov(X, Y)+ad*Cov(X, Z)+ \\
+                          bc*Cov(W, Y)+bd*Cov(W, Z)\end{array}$$
+                  In General, if $U=a+\sum_{i=1}^nb_iX_i$, $V=c+\sum_{i=1}^nd_iX_i$, we have:
+                  $$Cov(U, V)=\sum_{i=1}^n\sum_{j=1}^mb_id_jCov(X_i, Y_j)$$
+            \item Property 5:
+                  $$Cov(X, X)=Var(X)$$
+            \item Property 6: If $X$ and $Y$ are independent then:
+                  $$Cov(X, Y)=0$$
+                  \textcolor{red}{But $Cov(X, Y)=0$ \underline{can't} gives us $X$ and $Y$ independent.}
+        \end{itemize}
+    \end{tcolorbox}
+    \begin{tcolorbox}[title=Correlation]
+        \begin{itemize}[leftmargin=*]
+            \item The Correlation of $X$ and $Y$ is defined as:
+                  $$\rho(X, Y)=\frac{Cov(X, Y)}{\sqrt{Var(X)Var(Y)}}\hspace{1cm}-1\leq\rho\leq 1$$
+            \item When $\rho$ is close to $1$, then $X$ and $Y$ are positively associated.
+            \item When $\rho$ is close to $-1$, then $X$ and $Y$ are negatively associated.
+            \item When $\rho$ is equals to $0$, then $X$ and $Y$ are not associated.
+        \end{itemize}
+    \end{tcolorbox}
+    \section{Markov and Chebyshev}
+    \begin{tcolorbox}[title=Markov's Inequality]
+        If $X$ only defined on non negative values, then:
+        $$P(X\geq t)\leq\frac{E(X)}{t}$$
+    \end{tcolorbox}
+    \begin{tcolorbox}[title=Chebyshev's Inequality]
+        Let $\mu$ and $\sigma^2$ be the mean and variance, then for $t>0$, we set $t=k\sigma$:
+        $$P(|X-\mu|>t)\leq\frac{\sigma^2}{t^2}\hspace{1cm}P(|X-\mu|>k\sigma)\leq\frac{1}{k^2}$$
+    \end{tcolorbox}
+    \section{Moment Generating Function}
+    $$M(t)=E(e^{tx})=\sum_{x}e^{tx}p(x)$$
+    $$M(t)=E(e^{tx})=\int_{-\infty}^\infty e^{tx}f(x)\,dx$$
+    \begin{tcolorbox}[title=Properties of Moment Generating Function]
+        \begin{itemize}[leftmargin=*]
+            \item MGF is unique for a distribution, so can prove the distribution that an RV follows.
+            \item MGF can be used to calculate some form of Expectation. That is, the \textcolor{red}{$r$th moment }is:
+                  $$E(X^r)=M^{(r)}(0)$$
+                  So Variance can also be calculated as the second moment of $X$ subtract the square of the first moment of $X$, that is:
+                  $$Var(X)=M^{(2)}(0)-[M^{(1)}(0)]^2$$
+            \item \textcolor{red}{$r$th central moment} is defined as:
+                  $$E([X-E(X)])^r$$
+            \item MGF of a transformed function is:
+                  $$M_{aX+b}(t)=e^{bt}M_X(at)$$
+            \item If $X$ and $Y$ are independent RV, then:
+                  $$M_{X+Y}(t)=M_X(t)M_Y(t)$$
+        \end{itemize}
+    \end{tcolorbox}
+    \section{Gamma Function}
+    $$\Gamma(\alpha)=\int_0^\infty u^{\alpha-1}e^{-u}\,du$$
+    \begin{itemize}[leftmargin=*]
+        \item when $\alpha$ is fraction : $\Gamma(\alpha+1)=\alpha\Gamma(\alpha)$
+        \item when $\alpha$ is integer : $\Gamma(\alpha+1)=\alpha!$
+    \end{itemize}
+    \begin{center}
+        \begin{tabular}{ | c | c c c c c c |}
+            \hline
+            $a$         & $1/2$        & $3/2$          & 1 & 2 & 3 & 4 \\ \hline
+            $\Gamma(a)$ & $\sqrt{\pi}$ & $\sqrt{\pi}/2$ & 1 & 1 & 2 & 6 \\ \hline
+        \end{tabular}
+    \end{center}
+    \section{Law of Large Number (LLN)}
+    Let $X_1, X_2, \dots$ be independent RV, and $E(X_i)=\mu$, $Var(X_i)=\sigma^2$ (we only require the variance is finite), Let:
+    $\bar X_n=\frac{1}{n}\sum_{i=1}^nX_i$
+    then for any $\varepsilon>0$:
+    $$P\left(\left|\bar X_n-\mu\right|\geq\varepsilon\right)\to 0\hspace{1cm}\text{as}\hspace{0.3cm}n\to\infty$$
+    That is when $n\to\infty$, then the sample mean \underline{convergence in probability} to the true mean $\bar X_n\to\mu$.
+    \section{Monte Carlo Integration}
+    We want to find:
+    $$I(g)=\int_0^1 g(x)\,dx$$
+    We first generate $n$ RV $X_1, \dots X_n$ from $Uni(0, 1)$, then we have:
+    $$\bar X_n=\hat I(f)=\frac{1}{n}\sum_{i=1}^nf(X_i)\hspace{1cm}\text{as}\hspace{0.3cm}n\to\infty$$
+    The key here is that the Uniform distribution on $[0, 1]$ has PDF $1$, thus the expectation of sample mean is just the function we want.
+    \section{Convergence in Distribution}
+    Let $X_1, \dots, X_n$ be independent RV. Let $X$ be RV. Then $X_n$ convergence in distribution to $X$ if:
+    $$\lim_{n\to\infty}F_n(x)=F(x)$$
+    At all points which $F$ is continuous. We often use MGF to prove convergence in distribution, that is:
+    $$\lim_{n\to\infty}M_n(t)=M(t)\implies\lim_{n\to\infty}F_n(x)=F(x)$$
+    For $t$ in an open interval containing zero.\par
+    We can use Standard Normal to approximate Poisson, when $\lambda$ gets large enough, but we first need to Standardiz the Poisson.
+    \section{Central Limit Theorem (CLT)}
+    Let $X_1, X_2, \dots$ be independent RV, and $E(X_i)=0$, $Var(X_i)=\sigma^2$ and common CDF/PDF and MGF defined in a neighbourhood of zero.
+    \begin{itemize}[leftmargin=*]
+        \item If we want Sum of $X_i$, we define:
+              $$S_n=\sum_{i=1}^nX_i$$
+              Then we have:
+              $$\lim_{n\to\infty}P\left(\frac{S_n}{\sigma\sqrt{n}}\leq x\right)=\Phi(x)$$
+        \item If we want Average of $X_i$, we define:
+              $$\bar X_n=\frac{1}{n}\sum_{i=1}^nX_i$$
+              Then we have:
+              $$\lim_{n\to\infty}P\left(\frac{\bar X_n}{\sigma/\sqrt{n}}\leq x\right)=\Phi(x)$$
+    \end{itemize}
+    For $-\infty<x<\infty$, that is when $n\to\infty$, then $\bar X\sim(\mu, \sigma^2/n)$.\par
+    If we don't have Expected value $0$, we can subtract off the mean and shift the distribution to make it have an expected value of $0$.
+    \begin{tcolorbox}[title=Normal Approximation]
+        In practise, we can normalize the sum to make it a standard normal:
+        $$\frac{S-E(S)}{Std(S)}\sim N(0, 1)$$
+        \begin{itemize}[leftmargin=*]
+            \item Binomial:
+                  Let $X_1, \dots, X_n$ be RV that follows Bernoulli distribution with parameter $p$. So their sum:
+                  $$S_n=\sum_{i=1}^nX_i$$
+                  follows a Binomial distribution, that is: $S_n\sim Bin(n, p)$, we have that:
+                  $$Z_n=\frac{S_n-np}{\sqrt{np(1-p)}}$$
+                  Where $Z_n\sim N(0, 1)$.
+        \end{itemize}
+    \end{tcolorbox}
+\end{multicols*}
+\end{document}
