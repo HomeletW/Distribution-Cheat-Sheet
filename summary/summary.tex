@@ -375,12 +375,15 @@
               $$S_n=\sum_{i=1}^nX_i$$
               Then we have:
               $$\lim_{n\to\infty}P\left(\frac{S_n}{\sigma\sqrt{n}}\leq x\right)=\Phi(x)$$
+              So, we have convergence in distribution of:
+              $$S_n\to N(0, n\sigma^2)$$
         \item If we want Average of $X_i$, we define:
               $$\bar X_n=\frac{1}{n}\sum_{i=1}^nX_i$$
               Then we have:
               $$\lim_{n\to\infty}P\left(\frac{\bar X_n}{\sigma/\sqrt{n}}\leq x\right)=\Phi(x)$$
+              So, we have convergence in distribution of:
+              $$\bar X_n\to N(0, \sigma^2/n)$$
     \end{itemize}
-    For $-\infty<x<\infty$, that is when $n\to\infty$, then $\bar X\sim(\mu, \sigma^2/n)$.\par
     If we don't have Expected value $0$, we can subtract off the mean and shift the distribution to make it have an expected value of $0$.
     \begin{tcolorbox}[title=Normal Approximation]
         In practise, we can normalize the sum to make it a standard normal:

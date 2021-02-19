@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.6)  21 DEC 2020 00:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.1.31)  19 FEB 2021 15:25
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/homelet/Workspace/UofT_Second_Year/STA257/distribution cheet sheet/summary/summary.tex"
-(/home/homelet/Workspace/UofT_Second_Year/STA257/distribution cheet sheet/summary/summary.tex
+**"/home/homelet/Workspace/distribution cheet sheet/summary/summary.tex"
+(/home/homelet/Workspace/distribution cheet sheet/summary/summary.tex
 LaTeX2e <2020-02-02> patch level 2
 L3 programming layer <2020-02-14> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
@@ -545,7 +545,7 @@ Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 )
 runsystem(uname -s > "summary.w18")...executed.
 
- (/home/homelet/Workspace/UofT_Second_Year/STA257/distribution cheet sheet/summary/summary.w18)
+ (/home/homelet/Workspace/distribution cheet sheet/summary/summary.w18)
 runsystem(rm -- "summary.w18")...executed.
 
 ) (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
@@ -736,7 +736,7 @@ runsystem(rm summary.aex)...executed.
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count334
 \l__pdf_internal_box=\box151
-) (/home/homelet/Workspace/UofT_Second_Year/STA257/distribution cheet sheet/summary/summary.aux)
+) (/home/homelet/Workspace/distribution cheet sheet/summary/summary.aux)
 \openout1 = `summary.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
@@ -841,20 +841,20 @@ Package multicol Warning: multicols* inside a box does not make sense.
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (/home/homelet/Workspace/UofT_Second_Year/STA257/distribution cheet sheet/summary/summary.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (/home/homelet/Workspace/distribution cheet sheet/summary/summary.aux) ) 
 Here is how much of TeX's memory you used:
- 21898 strings out of 481239
- 443831 string characters out of 5920378
- 793755 words of memory out of 5000000
- 36741 multiletter control sequences out of 15000+600000
+ 21898 strings out of 483107
+ 443567 string characters out of 5964630
+ 789122 words of memory out of 5000000
+ 36499 multiletter control sequences out of 15000+600000
  541145 words of font info for 58 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 59i,11n,75p,952b,579s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59 hyphenation exceptions out of 8191
+ 59i,11n,75p,928b,579s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on "/home/homelet/Workspace/UofT_Second_Year/STA257/distribution cheet sheet/summary/summary.pdf" (1 page, 132713 bytes).
+Output written on "/home/homelet/Workspace/distribution cheet sheet/summary/summary.pdf" (2 pages, 133411 bytes).
 PDF statistics:
- 56 PDF objects out of 1000 (max. 8388607)
- 41 compressed objects within 1 object stream
+ 59 PDF objects out of 1000 (max. 8388607)
+ 43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
